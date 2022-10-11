@@ -1,14 +1,14 @@
 # Platform as a Service - Image Recognition
-Cloud application which provides Real-Time Face Recognition as a Service to the users by using the resources of the AWS cloud - Lambda, DynamoDB and S3.
+Cloud application which provides Real-Time Face Recognition as a Service to the users by using the resources of the AWS cloud - Lambda, DynamoDB and S3 and IoT device (Raspberry Pi) at the edge
 
-## Group Members
-Akash Dhananjaya - 1222347698
-Madhu Grama Badarinarayan - 1219490987
-Ullas Kalakappa Lagubagi - 1222611390
+## Architecture
+![](images/architecture.png)
 
-## Lambda Function - RTFaceRecognition
-## S3 Bucket - image-frames-raspberry-pi
-## DynamoDB Table - Student_Data
+## Edge
+The edge component is based on the Raspberry Pi. It has a camera module that is used to record the videos and the videos are stored on Amazon S3. The frames are extracted from the videos and sent to the cloud.
+
+## Cloud
+The cloud (AWS) hosts the docker image with the trained face recognition deep-learning model. It processes the frames on Amazon Lambda and recognizes the face. The academic information of the recognized student is fetched from DynamoDB, where it is already stored. This data is sent back to the Pi as the response.
 
 ## Steps to Run the Code on Raspberry Pi
 1. Install python3 on the Raspberry Pi
